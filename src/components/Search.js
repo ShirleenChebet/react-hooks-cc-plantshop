@@ -7,12 +7,7 @@ function Search({ onSearch }) {
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
-    console.log("onSearch:", onSearch); // Log to check if it's passed as a function
-    if (typeof onSearch === 'function') {
-      onSearch(query); // Pass the search query to the parent component
-    } else {
-      console.error("onSearch is not a function");
-    }
+    onSearch(query); // Pass the search query to the parent component
   };
 
   return (
@@ -28,6 +23,5 @@ function Search({ onSearch }) {
     </div>
   );
 }
-
 
 export default Search;

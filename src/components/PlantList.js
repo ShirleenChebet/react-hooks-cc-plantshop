@@ -1,31 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import PlantCard from './PlantCard';
 import NewPlantForm from './NewPlantForm';
-
+import Search from './Search';
 function PlantList() {
   const [plants, setPlants] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
+    // Fetch the plant data when the component mounts
     fetch('http://localhost:3003/plants')
       .then((r) => r.json())
-      .then((data) => {
-        setPlants(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError('Error fetching plants');
-        setLoading(false);
-        console.error('Error fetching plants:', error);
-      });
+      .then((data) => setPlants(data))
+      .catch((error) => console.error('Error fetching plants:', error));
   }, []);
 
-  const handleAddPlant = (newPlant) => {
+  // Handle adding a new plant to the list
+  function handleAddPlant(newPlant) {
     setPlants((prevPlants) => [...prevPlants, newPlant]);
-  };
+  }
 
-  const handlePriceUpdate = (id, newPrice) => {
+  // Handle updating the price of a plant
+  function handlePriceUpdate(id, newPrice) {
+    // Send patch request to update the price
     fetch(`http://localhost:3003/plants/${id}`, {
       method: 'PATCH',
       headers: {
@@ -42,33 +38,36 @@ function PlantList() {
         );
       })
       .catch((error) => console.error('Error updating price:', error));
-  };
+  }
 
-  const handleDelete = (id) => {
-    if (window.confirm('Are you sure you want to delete this plant?')) {
-      fetch(`http://localhost:3003/plants/${id}`, {
-        method: 'DELETE',
+  // Handle deleting a plant
+  function handleDelete(id) {
+    // Send DELETE request to remove the plant
+    fetch(`http://localhost:3003/plants/${id}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        setPlants((prevPlants) => prevPlants.filter((plant) => plant.id !== id));
       })
-        .then(() => {
-          setPlants((prevPlants) => prevPlants.filter((plant) => plant.id !== id));
-        })
-        .catch((error) => console.error('Error deleting plant:', error));
-    }
-  };
-
-  if (loading) {
-    return <p>Loading plants...</p>;
+      .catch((error) => console.error('Error deleting plant:', error));
   }
 
-  if (error) {
-    return <p>{error}</p>;
+  // Handle search query change
+  function handleSearch(query) {
+    setSearchQuery(query);
   }
+
+  // Filter plants based on the search query
+  const filteredPlants = plants.filter((plant) =>
+    plant.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div>
       <NewPlantForm onAddPlant={handleAddPlant} />
+      <Search onSearch={handleSearch} />
       <ul className="cards">
-        {plants.map((plantObj) => (
+        {filteredPlants.map((plantObj) => (
           <PlantCard
             key={plantObj.id}
             id={plantObj.id}
@@ -84,5 +83,6 @@ function PlantList() {
     </div>
   );
 }
+
 
 export default PlantList;
