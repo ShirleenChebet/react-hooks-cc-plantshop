@@ -16,14 +16,14 @@ as well as persisting data to the backend via our API.
 Your job will be to make our app work according to the user stories you will
 find the [Core Deliverables](#Core-Deliverables) section.
 ##  INSTALLATION 
-git clone 
+git clone git@github.com:ShirleenChebet/react-hooks-cc-plantshop.git
 cd plansty
 npm install
 
 ## Setup
 
 1. Run `npm install` in your terminal.
-2. Run `npm run server`. This will run your backend on port `6001`.
+2. Run `npm run server`. This will run your backend on port `3003`.
 3. In a new terminal, run `npm start`.
 
 Make sure to open [http://localhost:3003/plants](http://localhost:3003/plants)
@@ -31,7 +31,7 @@ in the browser to verify that your backend is working before you proceed!
 
 ## Endpoints
 
-The base URL for your backend is: `http://localhost:6001`
+The base URL for your backend is: `http://localhost:3003`
 
 ## Core Deliverables
 
