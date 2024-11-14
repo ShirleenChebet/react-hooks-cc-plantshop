@@ -15,6 +15,10 @@ as well as persisting data to the backend via our API.
 
 Your job will be to make our app work according to the user stories you will
 find the [Core Deliverables](#Core-Deliverables) section.
+##  INSTALLATION 
+git clone 
+cd plansty
+npm install
 
 ## Setup
 
@@ -22,7 +26,7 @@ find the [Core Deliverables](#Core-Deliverables) section.
 2. Run `npm run server`. This will run your backend on port `6001`.
 3. In a new terminal, run `npm start`.
 
-Make sure to open [http://localhost:6001/plants](http://localhost:6001/plants)
+Make sure to open [http://localhost:3003/plants](http://localhost:3003/plants)
 in the browser to verify that your backend is working before you proceed!
 
 ## Endpoints
@@ -143,8 +147,28 @@ Example Response:
 
 #### DELETE /plants/:id
 
-Example Response:
+Example Response: plant should hide
+
+
+
 
 ```json
 {}
 ```
+
+MIT License
+
+Copyright (c) 2024 ShirleenChebet
+
+Permission is hereby granted, free of charge, to anyone obtaining a copy
+of this software and associated files, to deal in the Software without 
+restriction, including the rights to use, copy, modify, merge, publish, 
+distribute, sublicense, and/or sell copies of the Software, subject to 
+the following conditions:
+
+This copyright notice and permission notice shall be included in all copies 
+or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
